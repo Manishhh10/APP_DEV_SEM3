@@ -1,10 +1,13 @@
 package com.example.myapplication_app
 
+import android.app.DatePickerDialog
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
@@ -31,6 +34,14 @@ class SpinnerActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView)
         spinner = findViewById(R.id.spinner)
         display = findViewById(R.id.displaySpinner)
+        datePicker = findViewById(R.id.editTextDate)
+
+        datePicker.isFocusable = false
+        datePicker.isClickable = true
+
+        datePicker.setOnClickListener {
+            loadCalendar()
+        }
 
         var autoCompleteAdapter = ArrayAdapter(
             this@SpinnerActivity,
@@ -57,11 +68,28 @@ class SpinnerActivity : AppCompatActivity(),AdapterView.OnItemSelectedListener {
         }
     }
 
+    private fun loadCalendar(){
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dialog = DatePickerDialog(
+            this@SpinnerActivity,
+            DatePickerDialog.OnDateSetListener
+            { d, year, month, day ->
+                          //2024  05   01
+                datePicker.setText("$day/${month+1}/$day")
+            },year,month,day
+        )
+        dialog.show()
+    }
+
     override fun onItemSelected(p0: AdapterView<*>?, view: View?, p2: Int, p3: Long) {
         display.text =p0?.getItemAtPosition(p2).toString()
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
-        display.text = "None"
+
     }
 }
