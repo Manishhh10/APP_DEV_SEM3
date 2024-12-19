@@ -4,6 +4,10 @@ plugins {
 }
 
 android {
+
+    buildFeatures {
+        viewBinding = true
+    }
     namespace = "com.example.myapplication_app"
     compileSdk = 35
 
@@ -39,7 +43,8 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.airbnb.android:lottie:3.4.2")
+    implementation ("com.airbnb.android:lottie:lottieVersion")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

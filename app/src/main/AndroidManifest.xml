@@ -15,6 +15,39 @@
         android:theme="@style/Theme.MyApplication_App"
         tools:targetApi="31">
         <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TaskDestinationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaskActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DestinationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ButtonActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".RecyclerActivity"
             android:exported="true">
             <intent-filter>
