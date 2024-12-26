@@ -1,6 +1,6 @@
 package com.example.myapplication_app
 
-import adapter.FruitsAdapter
+import com.example.myapplication_app.adapter.FruitsAdapter
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity

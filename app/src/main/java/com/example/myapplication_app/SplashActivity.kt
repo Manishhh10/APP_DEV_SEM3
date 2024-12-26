@@ -1,6 +1,8 @@
 package com.example.myapplication_app
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,16 +13,35 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication_app.R.*
 
 class SplashActivity : AppCompatActivity() {
+    lateinit var sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(layout.activity_splash)
+        setContentView(R.layout.activity_splash)
+
+        sharedPreferences =
+            getSharedPreferences("userData",
+                Context.MODE_PRIVATE)
+
+        val username : String = sharedPreferences
+            .getString("username","").toString()
+
+        val password : String = sharedPreferences
+            .getString("password","").toString()
+
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashActivity,
-                ButtonActivity::class.java)
-            startActivity(intent)
-        },1800)
+            if(username.isEmpty()){
+                val intent = Intent(this@SplashActivity,
+                    ButtonActivity::class.java)
+                startActivity(intent)
+            }else{
+                val intent = Intent(this@SplashActivity,
+                    DestinationActivity::class.java)
+                startActivity(intent)
+            }
+
+        },2000)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
